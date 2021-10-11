@@ -1,13 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/title"
-        android:gravity="center"
+        android:id="@+id/grade_text"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="placeholder"/>
+        android:layout_height="wrap_content"
+        android:textAlignment="textEnd"
+        android:layout_margin="12dp"
+        android:text="Puntuación: 50" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/title_text"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Operación"
+            android:layout_margin="24dp"
+            android:padding="12dp"/>
+
+        <TextView
+            android:id="@+id/num_1_text"
+            style="@style/TextAppearance.AppCompat.Display1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="0"/>
+
+
+        <TextView
+            android:id="@+id/operator_text"
+            style="@style/TextAppearance.AppCompat.Display1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="+"/>
+
+        <TextView
+            android:id="@+id/num_2_text"
+            style="@style/TextAppearance.AppCompat.Display1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="0" />
+
+        <EditText
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:cursorVisible="false"
+            android:editable="false"
+            android:textIsSelectable="false"/>
+
+        <EditText
+            android:id="@+id/answer_edit"
+            android:layout_marginLeft="36dp"
+            android:layout_marginRight="36dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/answer_here"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:cursorVisible="true"
+            android:textIsSelectable="true"
+            android:inputType="number"/>
+
+        <LinearLayout
+            android:layout_marginTop="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <Button
+                android:id="@+id/back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="12dp"
+                android:text="@string/back"/>
+
+            <Button
+                android:id="@+id/accept_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:text="@string/accept"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:paddingTop="48dp"
+            android:layout_gravity="center"
+            android:text="@string/answer"/>
+
+        <TextView
+            android:id="@+id/answer_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_gravity="center"
+            android:text="0"/>
+
+    </LinearLayout>
 
 </LinearLayout>
