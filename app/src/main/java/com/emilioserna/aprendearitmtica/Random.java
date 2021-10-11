@@ -7,6 +7,6 @@ public class Random {
     }
 
     public static int getRandomNumber() {
-        return (int) ((Math.random() * (9 - 1)) + 1);
+        return (int) ((Math.random() * (10 - 1)) + 1);
     }
 }

@@ -6,11 +6,12 @@
     <string name="option_mul">Multiplicación</string>
     <string name="option_div">División</string>
     <string name="option_quit">Salir</string>
-    <string name="answer">La respuesta es:</string>
+    <string name="answer">La respuesta correcta era:</string>
     <string name="answer_here">Escribe aquí tu respuesta</string>
     <string name="grade">Puntuación:</string>
     <string name="back">Regresar</string>
     <string name="accept">Aceptar</string>
     <string name="correct_answer">¡Correcto!</string>
     <string name="incorrect_answer">¡Incorrecto!</string>
+    <string name="answer_required">Se requiere una respuesta</string>
 </resources>

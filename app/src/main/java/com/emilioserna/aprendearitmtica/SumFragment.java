@@ -1,11 +1,13 @@
 package com.emilioserna.aprendearitmtica;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,8 +19,10 @@ public class SumFragment extends Fragment {
     private int indexAnswer = 0;
     private int indexNum1 = 0;
     private int indexNum2 = 1;
-    private int answer;
+    private int result;             // this is the CORRECT result
+    private int answer = 0;         // this is the GIVEN answer from the user
     private Button mBackButton;
+    private Button mAcceptButton;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,7 +32,13 @@ public class SumFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_operation, container, false);
-        answer = MainFragment.nums[0] + MainFragment.nums[1];
+
+        TextView num1 = (TextView) v.findViewById(R.id.num_1_text);
+        TextView num2 = (TextView) v.findViewById(R.id.num_2_text);
+        TextView answerText = (TextView) v.findViewById(R.id.answer_edit);
+
+        // Set grade
+        MainFragment.setText(v, R.id.grade_text, getResources().getString(R.string.grade) + " " + MainFragment.grade);
 
         // Set Title
         MainFragment.setText(v, R.id.title_text, R.string.option_sum);
@@ -36,12 +46,8 @@ public class SumFragment extends Fragment {
         // Set Operator
         MainFragment.setText(v, R.id.operator_text, "+");
 
-        // Randomizes numbers
-        MainFragment.randomize(indexAnswer, indexNum1, indexNum2);
-
-        // Set Text on both numbers
-        MainFragment.setText(v, R.id.num_1_text, String.valueOf(MainFragment.nums[0]));
-        MainFragment.setText(v, R.id.num_2_text, String.valueOf(MainFragment.nums[1]));
+        // Randomize numbers
+        MainFragment.setRandomizedText(v, indexAnswer, indexNum1, indexNum2);
 
         mBackButton = (Button) v.findViewById(R.id.back_button);
         mBackButton.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +58,41 @@ public class SumFragment extends Fragment {
                 transaction.replace(R.id.fragment_container, fragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
+            }
+        });
+
+        mAcceptButton = (Button) v.findViewById(R.id.accept_button);
+        mAcceptButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // It is answered, whether it's correct or incorrect
+                MainFragment.answered[indexAnswer] = true;
+
+                int valueNum1 = Integer.valueOf(num1.getText().toString());
+                int valueNum2 = Integer.valueOf(num2.getText().toString());
+
+                if (answerText.length() > 0) {
+                    answer = Integer.valueOf(answerText.getText().toString());
+                    result = MainFragment.nums[indexNum1] + MainFragment.nums[indexNum2];
+                    if (result == answer) {
+                        MainFragment.grade += 10;
+                        Toast.makeText(MainActivity.context, R.string.correct_answer, Toast.LENGTH_SHORT).show();
+
+                        // Set grade
+                        MainFragment.setText(v, R.id.grade_text, getResources().getString(R.string.grade) + " " + MainFragment.grade);
+                    } else {
+                        Toast.makeText(MainActivity.context, R.string.incorrect_answer, Toast.LENGTH_SHORT).show();
+                    }
+
+                    // Set correct answer
+                    MainFragment.setText(v, R.id.answer_text, String.valueOf(result));
+
+                    //Randomize numbers
+                    MainFragment.setRandomizedText(v, indexAnswer, indexNum1, indexNum2);
+
+                } else {
+                    Toast.makeText(MainActivity.context, R.string.answer_required, Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

@@ -70,7 +70,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:cursorVisible="true"
             android:textIsSelectable="true"
-            android:inputType="number"/>
+            android:inputType="numberSigned"/>
 
         <LinearLayout
             android:layout_marginTop="24dp"
