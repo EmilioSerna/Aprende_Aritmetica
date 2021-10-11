@@ -18,6 +18,8 @@ public class TitleFragment extends Fragment implements View.OnClickListener {
     private Button mDivButton;
     private Button mQuitButton;
 
+    public static int grade;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +28,8 @@ public class TitleFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_title, container, false);
+
+        grade = 0;
 
         mSumButton = (Button) v.findViewById(R.id.button_sum);
         mSubButton = (Button) v.findViewById(R.id.button_sub);
