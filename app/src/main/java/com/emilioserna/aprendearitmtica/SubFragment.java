@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class SumFragment extends Fragment {
+public class SubFragment extends Fragment {
 
     TextView title;
 
@@ -24,7 +24,7 @@ public class SumFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_operation, container, false);
 
         title = (TextView) v.findViewById(R.id.title);
-        title.setText(R.string.option_sum);
+        title.setText(R.string.option_sub);
 
         return v;
     }
