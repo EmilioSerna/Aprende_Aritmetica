@@ -12,8 +12,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import org.w3c.dom.Text;
-
 public class MainFragment extends Fragment implements View.OnClickListener {
     private Button mSumButton;
     private Button mSubButton;
@@ -21,7 +19,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     private Button mDivButton;
     private Button mQuitButton;
 
-    public static int grade;
+    public static int grade = 0;
     public static int nums[] = new int[8];
 
     public static boolean answered[] = {true, true, true, true};
@@ -34,8 +32,6 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_title, container, false);
-
-        grade = 0;
 
         mSumButton = (Button) v.findViewById(R.id.button_sum);
         mSubButton = (Button) v.findViewById(R.id.button_sub);
@@ -100,11 +96,20 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         return mText;
     }
 
-    public static void randomize(int indexAnswer, int indexNum1, int indexNum2) {
+    static void randomize(int indexAnswer, int indexNum1, int indexNum2) {
         if (MainFragment.answered[indexAnswer]) {
             MainFragment.nums[indexNum1] = Random.getRandomNumber();
             MainFragment.nums[indexNum2] = Random.getRandomNumber();
             MainFragment.answered[indexAnswer] = false;
         }
+    }
+
+    public static void setRandomizedText(View v, int indexAnswer, int indexNum1, int indexNum2) {
+        // Randomizes numbers
+        MainFragment.randomize(indexAnswer, indexNum1, indexNum2);
+
+        // Set Text on both numbers
+        MainFragment.setText(v, R.id.num_1_text, String.valueOf(nums[indexNum1]));
+        MainFragment.setText(v, R.id.num_2_text, String.valueOf(nums[indexNum2]));
     }
 }
