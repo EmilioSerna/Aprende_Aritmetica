@@ -5,13 +5,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-public class TitleFragment extends Fragment implements View.OnClickListener {
+import org.w3c.dom.Text;
+
+public class MainFragment extends Fragment implements View.OnClickListener {
     private Button mSumButton;
     private Button mSubButton;
     private Button mMulButton;
@@ -19,6 +22,9 @@ public class TitleFragment extends Fragment implements View.OnClickListener {
     private Button mQuitButton;
 
     public static int grade;
+    public static int nums[] = new int[8];
+
+    public static boolean answered[] = {true, true, true, true};
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,5 +84,27 @@ public class TitleFragment extends Fragment implements View.OnClickListener {
         transaction.replace(R.id.fragment_container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    public static TextView setText(View v, int id, int text) {
+        TextView mText;
+        mText = v.findViewById(id);
+        mText.setText(text);
+        return mText;
+    }
+
+    public static TextView setText(View v, int id, String text) {
+        TextView mText;
+        mText = v.findViewById(id);
+        mText.setText(text);
+        return mText;
+    }
+
+    public static void randomize(int indexAnswer, int indexNum1, int indexNum2) {
+        if (MainFragment.answered[indexAnswer]) {
+            MainFragment.nums[indexNum1] = Random.getRandomNumber();
+            MainFragment.nums[indexNum2] = Random.getRandomNumber();
+            MainFragment.answered[indexAnswer] = false;
+        }
     }
 }
