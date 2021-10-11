@@ -23,7 +23,7 @@ public class SumFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_operation, container, false);
 
-        title = (TextView) v.findViewById(R.id.title);
+        title = (TextView) v.findViewById(R.id.title_text);
         title.setText(R.string.option_sum);
 
         return v;
