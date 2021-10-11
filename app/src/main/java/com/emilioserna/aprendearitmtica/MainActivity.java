@@ -8,13 +8,16 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static FragmentManager fm;
+    Fragment fragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentById(R.id.fragment_container);
+        fm = getSupportFragmentManager();
+        fragment = fm.findFragmentById(R.id.fragment_container);
 
         if (fragment == null) {
             fragment = new TitleFragment();
