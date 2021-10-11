@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Aprende Aritmética</string>
+    <string name="title">Aprende Aritmética</string>
+    <string name="option_sum">Suma</string>
+    <string name="option_sub">Resta</string>
+    <string name="option_mul">Multiplicación</string>
+    <string name="option_div">División</string>
+    <string name="option_quit">Salir</string>
+    <string name="answer">La respuesta es:</string>
+    <string name="grade">Puntuación:</string>
 </resources>
