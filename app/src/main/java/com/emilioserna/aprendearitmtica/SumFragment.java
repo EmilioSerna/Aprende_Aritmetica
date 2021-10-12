@@ -5,8 +5,10 @@ import static com.emilioserna.aprendearitmtica.MainFragment.grade;
 import static com.emilioserna.aprendearitmtica.MainFragment.nums;
 import static com.emilioserna.aprendearitmtica.MainFragment.setRandomizedText;
 import static com.emilioserna.aprendearitmtica.MainFragment.setText;
+import com.emilioserna.aprendearitmtica.MainFragment;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,31 +73,7 @@ public class SumFragment extends Fragment {
         mAcceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // It is answered, whether it's correct or incorrect
-                answered[indexAnswer] = true;
-
-                if (answerText.length() > 0) {
-                    answer = Integer.valueOf(answerText.getText().toString());
-                    result = nums[indexNum1] + nums[indexNum2];
-                    if (result == answer) {
-                        grade += 10;
-                        Toast.makeText(MainActivity.context, R.string.correct_answer, Toast.LENGTH_SHORT).show();
-
-                        // Set grade
-                        setText(v, R.id.grade_text, getResources().getString(R.string.grade) + " " + grade);
-                    } else {
-                        Toast.makeText(MainActivity.context, R.string.incorrect_answer, Toast.LENGTH_SHORT).show();
-                    }
-
-                    // Set correct answer
-                    setText(v, R.id.answer_text, String.valueOf(result));
-
-                    //Randomize numbers
-                    setRandomizedText(v, indexAnswer, indexNum1, indexNum2);
-
-                } else {
-                    Toast.makeText(MainActivity.context, R.string.answer_required, Toast.LENGTH_SHORT).show();
-                }
+                new MainFragment().answer(indexAnswer, answerText, indexNum1, indexNum2, operator, v);
             }
         });
 

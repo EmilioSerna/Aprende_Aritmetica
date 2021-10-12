@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -84,16 +85,24 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         transaction.commit();
     }
 
-    public static TextView setText(View v, int id, int text) {
+    public static TextView setText(View v, int id, int rString) {
         TextView mText;
         mText = v.findViewById(id);
-        mText.setText(text);
+        mText.setText(rString);
         return mText;
     }
 
     public static TextView setText(View v, int id, String text) {
         TextView mText;
         mText = v.findViewById(id);
+        mText.setText(text);
+        return mText;
+    }
+
+    public TextView setText(View v, int id, int rString, String text) {
+        TextView mText;
+        mText = v.findViewById(id);
+        text = MainActivity.context.getResources().getString(rString) + " " + text;
         mText.setText(text);
         return mText;
     }
@@ -120,5 +129,32 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         // Set Text on both numbers
         setText(v, R.id.num_1_text, String.valueOf(nums[indexNum1]));
         setText(v, R.id.num_2_text, String.valueOf(nums[indexNum2]));
+    }
+
+    public void answer(int indexAnswer, TextView answerText, int indexNum1, int indexNum2, String operator, View v) {
+        answered[indexAnswer] = true;
+
+        if (answerText.length() > 0) {
+            int answer = Integer.valueOf(answerText.getText().toString());
+            int result = nums[indexNum1] + nums[indexNum2];
+            if (result == answer) {
+                grade += 10;
+                Toast.makeText(MainActivity.context, R.string.correct_answer, Toast.LENGTH_SHORT).show();
+
+                // Set grade
+                setText(v, R.id.grade_text, R.string.grade, String.valueOf(grade));
+            } else {
+                Toast.makeText(MainActivity.context, R.string.incorrect_answer, Toast.LENGTH_SHORT).show();
+            }
+
+            // Set correct answer
+            setText(v, R.id.answer_text, String.valueOf(result));
+
+            //Randomize numbers
+            setRandomizedText(v, indexAnswer, indexNum1, indexNum2);
+
+        } else {
+            Toast.makeText(MainActivity.context, R.string.answer_required, Toast.LENGTH_SHORT).show();
+        }
     }
 }
