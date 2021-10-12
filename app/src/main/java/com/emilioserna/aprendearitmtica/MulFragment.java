@@ -6,10 +6,13 @@ import static com.emilioserna.aprendearitmtica.MainFragment.nums;
 import static com.emilioserna.aprendearitmtica.MainFragment.setRandomizedText;
 import static com.emilioserna.aprendearitmtica.MainFragment.setText;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,8 +27,6 @@ public class MulFragment extends Fragment {
     private int indexAnswer = 2;
     private int indexNum1 = 4;
     private int indexNum2 = 5;
-    private int result;             // this is the CORRECT result
-    private int answer = 0;         // this is the GIVEN answer from the user
     private Button mBackButton;
     private Button mAcceptButton;
     private String operator = "x";
@@ -62,11 +63,28 @@ public class MulFragment extends Fragment {
             }
         });
 
+        answerText.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if (keyEvent.getAction() == KeyEvent.ACTION_DOWN && i == KeyEvent.KEYCODE_ENTER) {
+                    if (keyEvent.getAction() == KeyEvent.ACTION_DOWN && i == KeyEvent.KEYCODE_ENTER) {
+                        new MainFragment().answer(indexAnswer, answerText, indexNum1, indexNum2, operator, v);
+                        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                    }
+                }
+
+                return false;
+            }
+        });
+
         mAcceptButton = (Button) v.findViewById(R.id.accept_button);
         mAcceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new MainFragment().answer(indexAnswer, answerText, indexNum1, indexNum2, operator, v);
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
         });
 
