@@ -70,31 +70,7 @@ public class DivFragment extends Fragment {
         mAcceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // It is answered, whether it's correct or incorrect
-                answered[indexAnswer] = true;
-
-                if (answerText.length() > 0) {
-                    answer = Integer.valueOf(answerText.getText().toString());
-                    result = Integer.valueOf(nums[indexNum1]) / Integer.valueOf(nums[indexNum2]);
-                    if (result == answer) {
-                        grade += 10;
-                        Toast.makeText(MainActivity.context, R.string.correct_answer, Toast.LENGTH_SHORT).show();
-
-                        // Set grade
-                        setText(v, R.id.grade_text, getResources().getString(R.string.grade) + " " + grade);
-                    } else {
-                        Toast.makeText(MainActivity.context, R.string.incorrect_answer, Toast.LENGTH_SHORT).show();
-                    }
-
-                    // Set correct answer
-                    setText(v, R.id.answer_text, String.valueOf(result));
-
-                    //Randomize numbers
-                    setRandomizedText(v, indexAnswer, indexNum1, indexNum2);
-
-                } else {
-                    Toast.makeText(MainActivity.context, R.string.answer_required, Toast.LENGTH_SHORT).show();
-                }
+                new MainFragment().answer(indexAnswer, answerText, indexNum1, indexNum2, operator, v);
             }
         });
 
