@@ -136,7 +136,23 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 
         if (answerText.length() > 0) {
             int answer = Integer.valueOf(answerText.getText().toString());
-            int result = nums[indexNum1] + nums[indexNum2];
+            int result = 0;
+
+            switch (operator) {
+                case "+":
+                    result = nums[indexNum1] + nums[indexNum2];
+                    break;
+                case "-":
+                    result = nums[indexNum1] - nums[indexNum2];
+                    break;
+                case "x":
+                    result = nums[indexNum1] * nums[indexNum2];
+                    break;
+                case "÷":
+                    result = nums[indexNum1] / nums[indexNum2];
+                    break;
+            }
+
             if (result == answer) {
                 grade += 10;
                 Toast.makeText(MainActivity.context, R.string.correct_answer, Toast.LENGTH_SHORT).show();
