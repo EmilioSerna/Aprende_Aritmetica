@@ -29,6 +29,7 @@ public class SubFragment extends Fragment {
     private Button mBackButton;
     private Button mAcceptButton;
     private String operator = "-";
+    private int rStringOption = R.string.option_sub;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,15 +40,13 @@ public class SubFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_operation, container, false);
 
-        TextView num1 = (TextView) v.findViewById(R.id.num_1_text);
-        TextView num2 = (TextView) v.findViewById(R.id.num_2_text);
         TextView answerText = (TextView) v.findViewById(R.id.answer_edit);
 
         // Set grade
         setText(v, R.id.grade_text, getResources().getString(R.string.grade) + " " + grade);
 
         // Set Title
-        setText(v, R.id.title_text, R.string.option_sum);
+        setText(v, R.id.title_text, rStringOption);
 
         // Set Operator
         setText(v, R.id.operator_text, operator);
@@ -73,9 +72,6 @@ public class SubFragment extends Fragment {
             public void onClick(View view) {
                 // It is answered, whether it's correct or incorrect
                 answered[indexAnswer] = true;
-
-                int valueNum1 = Integer.valueOf(num1.getText().toString());
-                int valueNum2 = Integer.valueOf(num2.getText().toString());
 
                 if (answerText.length() > 0) {
                     answer = Integer.valueOf(answerText.getText().toString());
