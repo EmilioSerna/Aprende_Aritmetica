@@ -1,10 +1,12 @@
 package com.emilioserna.aprendearitmtica;
 
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -100,6 +102,13 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         if (answered[indexAnswer]) {
             nums[indexNum1] = Random.getRandomNumber();
             nums[indexNum2] = Random.getRandomNumber();
+
+            if (indexAnswer == 3) {
+                while (Double.valueOf(nums[indexNum1]) / Double.valueOf(nums[indexNum2]) % 1 != 0) {
+                    nums[indexNum1] = Random.getRandomNumber();
+                    nums[indexNum2] = Random.getRandomNumber();
+                }
+            }
             answered[indexAnswer] = false;
         }
     }
