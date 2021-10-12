@@ -40,8 +40,6 @@ public class DivFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_operation, container, false);
 
-        TextView num1 = (TextView) v.findViewById(R.id.num_1_text);
-        TextView num2 = (TextView) v.findViewById(R.id.num_2_text);
         TextView answerText = (TextView) v.findViewById(R.id.answer_edit);
 
         // Set grade
