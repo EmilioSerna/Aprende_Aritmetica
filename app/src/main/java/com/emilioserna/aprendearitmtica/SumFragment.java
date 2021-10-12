@@ -61,13 +61,17 @@ public class SumFragment extends Fragment {
         mBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment fragment = new MainFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, fragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
+                getActivity().onBackPressed();
             }
         });
+
+        /*answerText.setOnKeyListener(new View.OnKeyListener() {
+
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                return false;
+            }
+        });*/
 
         mAcceptButton = (Button) v.findViewById(R.id.accept_button);
         mAcceptButton.setOnClickListener(new View.OnClickListener() {
