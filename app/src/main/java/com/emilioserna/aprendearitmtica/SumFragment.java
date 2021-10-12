@@ -26,10 +26,11 @@ public class SumFragment extends Fragment {
     private int indexNum2 = 1;
     private int result;             // this is the CORRECT result
     private int answer = 0;         // this is the GIVEN answer from the user
-    private Button mBackButton;
-    private Button mAcceptButton;
-    private String operator = "+";
-    private int rStringOption = R.string.option_sum;
+    protected Button mBackButton;
+    protected Button mAcceptButton;
+    protected String operator = "+";
+    protected int rStringOption = R.string.option_sum;
+    protected static TextView answerText;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,7 +41,7 @@ public class SumFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_operation, container, false);
 
-        TextView answerText = (TextView) v.findViewById(R.id.answer_edit);
+        answerText = (TextView) v.findViewById(R.id.answer_edit);
 
         // Set grade
         setText(v, R.id.grade_text, getResources().getString(R.string.grade) + " " + grade);
