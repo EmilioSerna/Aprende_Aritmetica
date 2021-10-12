@@ -97,19 +97,19 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     }
 
     static void randomize(int indexAnswer, int indexNum1, int indexNum2) {
-        if (MainFragment.answered[indexAnswer]) {
-            MainFragment.nums[indexNum1] = Random.getRandomNumber();
-            MainFragment.nums[indexNum2] = Random.getRandomNumber();
-            MainFragment.answered[indexAnswer] = false;
+        if (answered[indexAnswer]) {
+            nums[indexNum1] = Random.getRandomNumber();
+            nums[indexNum2] = Random.getRandomNumber();
+            answered[indexAnswer] = false;
         }
     }
 
     public static void setRandomizedText(View v, int indexAnswer, int indexNum1, int indexNum2) {
         // Randomizes numbers
-        MainFragment.randomize(indexAnswer, indexNum1, indexNum2);
+        randomize(indexAnswer, indexNum1, indexNum2);
 
         // Set Text on both numbers
-        MainFragment.setText(v, R.id.num_1_text, String.valueOf(nums[indexNum1]));
-        MainFragment.setText(v, R.id.num_2_text, String.valueOf(nums[indexNum2]));
+        setText(v, R.id.num_1_text, String.valueOf(nums[indexNum1]));
+        setText(v, R.id.num_2_text, String.valueOf(nums[indexNum2]));
     }
 }
