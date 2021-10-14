@@ -3,6 +3,7 @@ package com.emilioserna.aprendearitmtica;
 import static com.emilioserna.aprendearitmtica.MainFragment.answered;
 import static com.emilioserna.aprendearitmtica.MainFragment.grade;
 import static com.emilioserna.aprendearitmtica.MainFragment.nums;
+import static com.emilioserna.aprendearitmtica.MainFragment.randomizeColor;
 import static com.emilioserna.aprendearitmtica.MainFragment.setRandomizedText;
 import static com.emilioserna.aprendearitmtica.MainFragment.setText;
 
@@ -41,6 +42,8 @@ public class DivFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_operation, container, false);
 
+        new MainFragment().changeColor(v);
+
         TextView answerText = (TextView) v.findViewById(R.id.answer_edit);
 
         // Set grade
@@ -69,6 +72,7 @@ public class DivFragment extends Fragment {
                 if (keyEvent.getAction() == KeyEvent.ACTION_DOWN && i == KeyEvent.KEYCODE_ENTER) {
                     if (keyEvent.getAction() == KeyEvent.ACTION_DOWN && i == KeyEvent.KEYCODE_ENTER) {
                         new MainFragment().answer(indexAnswer, answerText, indexNum1, indexNum2, operator, v);
+                        new MainFragment().changeColor(v);
                         InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                     }
@@ -83,6 +87,7 @@ public class DivFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 new MainFragment().answer(indexAnswer, answerText, indexNum1, indexNum2, operator, v);
+                new MainFragment().changeColor(v);
             }
         });
 

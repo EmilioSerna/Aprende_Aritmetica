@@ -1,6 +1,7 @@
 package com.emilioserna.aprendearitmtica;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.KeyEvent;
@@ -176,6 +177,29 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 
         } else {
             Toast.makeText(MainActivity.context, R.string.answer_required, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void changeColor(View v) {
+        v.setBackgroundColor(Color.parseColor(randomizeColor()));
+    }
+
+    public static String randomizeColor() {
+        switch (Random.getRandomNumber(0, 6)) {
+            case 0:
+                return "#c7fffb";
+            case 1:
+                return "#fbffc6";
+            case 2:
+                return "#ffe8c5";
+            case 3:
+                return "#dfffcf";
+            case 4:
+                return "#dad6ff";
+            case 5:
+                return "#f9d4ff";
+            default:
+                return "#d6ffec";
         }
     }
 }
