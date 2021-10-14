@@ -80,8 +80,6 @@ public class SumFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 new MainFragment().answer(indexAnswer, answerText, indexNum1, indexNum2, operator, v);
-                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
         });
 

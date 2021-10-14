@@ -166,6 +166,8 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(MainActivity.context, R.string.incorrect_answer, Toast.LENGTH_SHORT).show();
             }
 
+            answerText.setText("");
+
             // Set correct answer
             setText(v, R.id.answer_text, String.valueOf(result));
 
